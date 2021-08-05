@@ -22,7 +22,11 @@ public class Card {
         return face.ordinal() + 2;
     }
 
-    public String toString(){
-        return this.suit.toString() + "-" + this.face.toString();
+    @Override
+    public String toString() {
+        return "Card{" +
+                "face=" + face +
+                ", suit=" + suit +
+                '}';
     }
 }
