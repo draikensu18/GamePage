@@ -1,4 +1,4 @@
-package app.Cards;
+package app.cards;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,14 +12,13 @@ public class Deck {
         deckOfCards = new ArrayList<Card>();
     }
 
-    public ArrayList<Card> getDeck() {
+    public void getDeck() {
 
         for (Suit suit : Suit.values()) {
             for(Face face: Face.values()){
                 deckOfCards.add(new Card(face, suit));
             }
         }
-        return deckOfCards;
     }
 
     public void shuffle(){
@@ -29,7 +28,7 @@ public class Deck {
     public Card pullCard(){
         pulledCards.add(deckOfCards.get(0));
         deckOfCards.remove(0);
-        return pulledCards.get(0);
+        return pulledCards.get(pulledCards.size() - 1);
     }
 
     @Override

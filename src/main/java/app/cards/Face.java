@@ -1,4 +1,4 @@
-package app.Cards;
+package app.cards;
 
 public enum Face {
     TWO,
