@@ -22,4 +22,7 @@ public class Card {
         return face.ordinal() + 2;
     }
 
+    public String toString(){
+        return this.suit.toString() + "-" + this.face.toString();
+    }
 }
