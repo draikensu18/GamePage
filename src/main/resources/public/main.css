@@ -5,7 +5,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     position: relative;
     min-height: 100%;
 }
@@ -13,11 +13,11 @@ html, body {
 body {
     padding: 0 0 40px;
     color: #333;
-    background: #f9f9f9;
+    background: #a300cc;
 }
 
 h1, h2, h3, h4 {
-    font-family: monospace;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: 300;
     color: #444;
 }
@@ -27,8 +27,8 @@ small {
 }
 
 header {
-    background: #274555;
-    border-bottom: 5px solid #008ab4;
+    background: #1a1a1a;
+    /*border-bottom: 5px solid #999999;*/
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, .6);
 }
 
@@ -117,9 +117,11 @@ footer {
     line-height: 40px;
     width: 100%;
     text-align: center;
-    background: #fff;
-    border-top: 1px solid #008ab4;
+    background: #1a1a1a;
+    /*border-top: 2px solid #999999;*/
     font-size: 14px;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 nav ul, nav li {

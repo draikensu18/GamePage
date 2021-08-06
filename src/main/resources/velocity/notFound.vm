@@ -1,4 +1,7 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 <h1>$msg.get("ERROR_404_NOT_FOUND")</h1>
+<body>
+<img src="/img/404.jpg" alt="meme under construction">
+</body>
 #end
