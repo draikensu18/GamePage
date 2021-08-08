@@ -1,10 +1,9 @@
-package app.book;
+package app.game;
 
 import app.cards.Card;
 import app.cards.Deck;
 
-import java.util.Collections;
-import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class HigherOrLower extends Deck {
@@ -16,6 +15,8 @@ public class HigherOrLower extends Deck {
     }
 
     public void higherOrLower() {
+        boolean end = false;
+        while (!end) {
         Card firstCard = game.pullCard();
         Card secondCard = game.pullCard();
         Integer firstCardValue = firstCard.getValue();
@@ -23,16 +24,14 @@ public class HigherOrLower extends Deck {
         Integer nextCard = 0;
         System.out.println(firstCard.toString() + firstCardValue);
         System.out.println(secondCard.toString() + secondCardValue);
-        Scanner sc = new Scanner(System.in);
         String cmd = "";
-        boolean end = false;
-
-        while (!end) {
+        try {
+            Scanner sc = new Scanner(System.in);
             if (firstCardValue > secondCardValue) {
                 System.out.println("you win");
                 System.out.println("pick another card? yes/no");
-                cmd = sc.next().toLowerCase();
-                if (cmd.equals("no")){
+                cmd = sc.nextLine().toLowerCase();
+                if (cmd.equals("no")) {
                     end = true;
                 } else {
                     higherOrLower();
@@ -44,9 +43,14 @@ public class HigherOrLower extends Deck {
                 System.out.println("you lose, better luck next time");
                 end = true;
             }
+
             sc.close();
+
+        }catch (NoSuchElementException e) {
+            end = true;
         }
 
+        }
     }
 
     public static void main(String[] args) {

@@ -1,9 +1,6 @@
-package app.book;
+package app.game;
 
-import app.cards.Card;
 import app.cards.Deck;
-import java.util.ArrayList;
-import java.util.Collections;
 
 import java.util.Scanner;
 

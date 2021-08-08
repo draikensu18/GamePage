@@ -1,4 +1,4 @@
-package app.book;
+package app.game;
 
 import java.util.*;
 

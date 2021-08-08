@@ -1,7 +1,7 @@
 package app;
 
-import app.book.BookController;
-import app.book.BookDao;
+import app.game.GameController;
+import app.game.GameDao;
 import app.index.IndexController;
 import app.login.LoginController;
 import app.user.UserDao;
@@ -19,13 +19,13 @@ import static io.javalin.apibuilder.ApiBuilder.post;
 public class Main {
 
     // Declare dependencies
-    public static BookDao bookDao;
+    public static GameDao gameDao;
     public static UserDao userDao;
 
     public static void main(String[] args) {
     //test
         // Instantiate your dependencies
-        bookDao = new BookDao();
+        gameDao = new GameDao();
         userDao = new UserDao();
 
         Javalin app = Javalin.create(config -> {
@@ -37,8 +37,8 @@ public class Main {
             before(Filters.handleLocaleChange);
             before(LoginController.ensureLoginBeforeViewingBooks);
             get(Path.Web.INDEX, IndexController.serveIndexPage);
-            get(Path.Web.BOOKS, BookController.fetchAllBooks);
-            get(Path.Web.ONE_BOOK, BookController.fetchOneBook);
+            get(Path.Web.BOOKS, GameController.fetchAllBooks);
+            get(Path.Web.ONE_BOOK, GameController.fetchOneBook);
             get(Path.Web.LOGIN, LoginController.serveLoginPage);
             post(Path.Web.LOGIN, LoginController.handleLoginPost);
             post(Path.Web.LOGOUT, LoginController.handleLogoutPost);

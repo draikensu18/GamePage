@@ -12,7 +12,7 @@ public class IndexController {
     public static Handler serveIndexPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("users", userDao.getAllUserNames());
-        model.put("book", bookDao.getRandomBook());
+        model.put("book", gameDao.getRandomBook());
         ctx.render(Path.Template.INDEX, model);
     };
 }

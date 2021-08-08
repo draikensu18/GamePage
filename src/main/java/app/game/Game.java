@@ -1,7 +1,7 @@
-package app.book;
+package app.game;
 
 
-public class Book {
+public class Game {
     public final String isbn;
     public final String title;
     public final String author;
@@ -14,7 +14,7 @@ public class Book {
         return "http://covers.openlibrary.org/b/isbn/" + this.isbn + "-L.jpg";
     }
 
-    public Book(String title, String author, String isbn) {
+    public Game(String title, String author, String isbn) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;

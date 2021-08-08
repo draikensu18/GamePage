@@ -30,7 +30,7 @@ public class LoginController {
             if (getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(getQueryLoginRedirect(ctx));
             }
-            ctx.render(Path.Template.LOGIN, model);
+            ctx.render(Path.Template.INDEX, model);
         }
     };
 
