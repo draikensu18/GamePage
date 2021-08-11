@@ -9,11 +9,11 @@
 <body>
     <header>
         <nav>
-            <a href="/index"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
+            <a href="/index"><img id="logo" src="/img/logo.png" alt="Accenture logo"></a>
             <ul id="chooseLanguage">
                 <form>
                     <li>
-                        <button name="locale" value="de" style="background-image: url(/img/german.png);"></button>
+                        <button name="locale" value="de" style="background-image: url(/img/latvian.png);"></button>
                     </li>
                     <li>
                         <button name="locale" value="en" style="background-image: url(/img/english.png);"></button>
@@ -22,6 +22,7 @@
             </ul>
             <ul id="menu">
                 <li><a href="/books">$msg.get("COMMON_NAV_ALLBOOKS")</a></li>
+                <li><a href="/register">$msg.get("COMMON_NAV_REGISTER")</a></li>
                 #if($currentUser)
                     <li>
                         <form method="post" action="/logout">
