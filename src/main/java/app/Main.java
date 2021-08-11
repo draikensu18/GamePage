@@ -1,5 +1,7 @@
 package app;
 
+import app.game.BlackJack;
+import app.game.BlackJackController;
 import app.game.GameController;
 import app.game.GameDao;
 import app.index.IndexController;
@@ -20,6 +22,7 @@ public class Main {
 
     // Declare dependencies
     public static GameDao gameDao;
+    public static BlackJack blackJack;
     public static UserDao userDao;
 
     public static void main(String[] args) {
@@ -27,6 +30,7 @@ public class Main {
         // Instantiate your dependencies
         gameDao = new GameDao();
         userDao = new UserDao();
+        blackJack = new BlackJack();
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
@@ -38,6 +42,10 @@ public class Main {
             before(LoginController.ensureLoginBeforeViewingBooks);
             get(Path.Web.INDEX, IndexController.serveIndexPage);
             get(Path.Web.BOOKS, GameController.fetchAllBooks);
+            get(Path.Web.BLACKJACK, BlackJackController.fetchBlackJack);
+            post(Path.Web.BLACKJACK, BlackJackController.fetchCurrentBet);
+            get(Path.Web.BLACKJACKGAME, BlackJackController.fetchBlackJackGame);
+            post(Path.Web.BLACKJACKGAME, BlackJackController.fetchHitStand);
             get(Path.Web.ONE_BOOK, GameController.fetchOneBook);
             get(Path.Web.LOGIN, LoginController.serveLoginPage);
             post(Path.Web.LOGIN, LoginController.handleLoginPost);

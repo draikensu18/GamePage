@@ -9,6 +9,8 @@ public class Path {
         public static final String BOOKS = "/books";
         public static final String ONE_BOOK = "/books/:isbn";
         public static final String REGISTER = "/register";
+        public static final String BLACKJACK = "/blackjack";
+        public static final String BLACKJACKGAME = "/blackjack/game";
     }
 
     public static class Template {
@@ -18,6 +20,8 @@ public class Path {
         public static final String BOOKS_ONE = "/velocity/book/one.vm";
         public static final String NOT_FOUND = "/velocity/notFound.vm";
         public static final String REGISTER = "/velocity/register/register.vm";
+        public static final String BLACKJACKTEMPLATE = "/velocity/book/BlackJack.vm";
+        public static final String BLACKJACKGAMETEMPLATE = "/velocity/book/BlackJackGame.vm";
     }
 
 }

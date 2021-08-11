@@ -1,0 +1,11 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>BlackJack</h1><br/>
+<p1>Balance: $blackjack.ShowMoney()</p1>
+
+    <form action=""method="post" >
+        <label>Bet Amount:</label>
+        <input type="text" name="currentBet" placeholder="Bet" value="" required><br>
+        <input type="submit" value="Confirm">
+    </form>
+#end

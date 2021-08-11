@@ -4,7 +4,11 @@
 <div class="row row-3">
     #foreach($book in $books)
         <div class="col">
+            #if($book.title=="BlackJack")
+            <a class="book" href="http://localhost:7000/blackjack">
+            #else
             <a class="book" href="/books/$book.isbn">
+                #end
                 <div class="bookCover">
                     <img src="$book.mediumCover" alt="$book.title">
                 </div>

@@ -21,6 +21,11 @@ public class RequestUtil {
         return ctx.formParam("password");
     }
 
+    public static String getParamCurrentBet(Context ctx) {return ctx.formParam("currentBet");}
+    public static String getParamHit(Context ctx) {return ctx.formParam("Hit");}
+    public static String getParamStand(Context ctx) {return ctx.formParam("Stand");}
+    public static String getParamReset(Context ctx) {return ctx.formParam("Reset");}
+
     public static String getQueryLoginRedirect(Context ctx) {
         return ctx.queryParam("loginRedirect");
     }

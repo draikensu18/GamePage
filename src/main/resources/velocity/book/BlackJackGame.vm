@@ -1,0 +1,30 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    #if($blackjack.RoundEnd)
+    <p1>Dealer deck: $blackjack.DealerDeck</p1><br><br>
+    <p3>Dealer deck value: $blackjack.ValueDealer</p3><br><br>
+    <p3>Player deck: $blackjack.PlayerDeck</p3><br><br>
+    <p4>Your deck value: $blackjack.ValuePlayer</p4><br><br>
+    <form method="post">
+        <input type="submit" name="Reset" value="Reset">
+    </form>
+    #else
+    <p1>Dealer deck: $blackjack.DealerOne</p1><br><br>
+    <p2>Player deck: $blackjack.PlayerDeck</p2><br><br>
+    <p3>Your deck value: $blackjack.ValuePlayer</p3><br><br>
+    <form method="post">
+        <input type="submit" name="Hit" value="Hit">
+        <input type="submit" name="Stand" value="Stand">
+    </form>
+    #end
+
+
+
+
+
+
+
+
+
+
+#end
