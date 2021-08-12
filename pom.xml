@@ -8,7 +8,30 @@
     <artifactId>javalin-website-example</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- : Change your jOOQ edition and version here -->
+        <org.jooq.groupId>org.jooq</org.jooq.groupId>
+        <org.jooq.version>3.15.1</org.jooq.version>
+
+        <!-- : Change the database driver configuration here and also in AbstractTest for the tests -->
+        <db.url>jdbc:mysql://localhost:3306/project</db.url>
+        <db.username>root</db.username>
+        <db.password>root</db.password>
+
+        <!-- : Fix Java versions -->
+        <java.version>11</java.version>
+    </properties>
+
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.22</version>
+        </dependency>
         <dependency>
             <groupId>io.javalin</groupId>
             <artifactId>javalin</artifactId>
@@ -34,6 +57,11 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.3m</version>
         </dependency>
+        <dependency>
+            <groupId>${org.jooq.groupId}</groupId>
+            <artifactId>jooq</artifactId>
+            <version>${org.jooq.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -48,28 +76,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <!-- This tells Maven to include all dependencies -->
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>app.Main</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>1.1.3</version>
@@ -80,6 +86,66 @@
                         <!-- Tell Heroku how to launch your application -->
                         <web>java -jar ./target/javalin-website-example-1.0-jar-with-dependencies.jar</web>
                     </processTypes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>${org.jooq.groupId}</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${org.jooq.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-java</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+
+                        <configuration>
+                            <generator>
+                                <target>
+                                    <packageName>io.javalin.database</packageName>
+                                    <directory>src/main/java</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>${org.jooq.groupId}</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${org.jooq.version}</version>
+
+                <configuration>
+                    <jdbc>
+                        <url>${db.url}</url>
+                        <user>${db.username}</user>
+                        <password>${db.password}</password>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <includes>.*</includes>
+                            <schemata>
+                                <schema>
+                                    <inputSchema>project</inputSchema>
+                                </schema>
+                            </schemata>
+                        </database>
+                        <generate>
+                            <generatedAnnotation>false</generatedAnnotation>
+                        </generate>
+                    </generator>
                 </configuration>
             </plugin>
         </plugins>

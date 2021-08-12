@@ -9,13 +9,12 @@
             #elseif($book.title=="Slots")
             <a class="book" href="http://localhost:7000/slots">
             #else
-            <a class="book" href="/books/$book.isbn">
+            <a class="book" href="/books/$book.isbn"></a>
             #end
             <div class="bookCover">
                 <img src="$book.mediumCover" alt="$book.title">
             </div>
-            $msg.get("BOOKS_CAPTION", $book.title, $book.author)
-        </a>
+            <a $msg.get("BOOKS_CAPTION", $book.title, $book.author) ></a>
         </div>
     #end
 </div>
