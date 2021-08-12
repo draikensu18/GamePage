@@ -20,17 +20,20 @@ public class SlotController {
     };
     public static Handler fetchSlotsBet = ctx -> {
         if(getParamReSpin(ctx)!=null){
-            slots.setWin();
-            slots.StartRound();
-            if(slots.CheckFullWin()){
+            if (slots.getCurrentBet() > slots.getPlayerMoney() || slots.getCurrentBet() <= 0) {
+                slots.ExtraUI2();
+                ctx.redirect(Path.Web.SLOTS);
+            } else {
+                slots.setWin();
+                slots.StartRound();
+                if(slots.CheckFullWin()){
 
+                }
+                else{
+                    slots.CheckHalfWin();
+                }
+                ctx.redirect(Path.Web.SLOTS);
             }
-            else{
-                slots.CheckHalfWin();
-            }
-
-
-            ctx.redirect(Path.Web.SLOTS);
         }
         else {
             try {

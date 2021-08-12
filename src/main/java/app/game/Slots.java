@@ -91,5 +91,8 @@ public class Slots {
         }
         return false;
     }
+    public void ExtraUI2(){
+        UI = false;
+    }
 
 }
