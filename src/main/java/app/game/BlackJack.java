@@ -1,8 +1,15 @@
 package app.game;
 
 import app.cards.Deck;
+import app.user.User;
+import app.user.UserController;
+import app.user.UserDao;
+import app.util.RequestUtil;
+import org.jooq.TableField;
+import org.jooq.generated.tables.records.UsersRecord;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 
 public class BlackJack {
@@ -15,7 +22,7 @@ public class BlackJack {
     public int valueDealer;
     public String dealerOne;
 
-    public Double currentBet;
+    public Float currentBet;
 
 
     public double getPlayerMoney(){return playerMoney;}
@@ -31,13 +38,16 @@ public class BlackJack {
     public boolean getRoundEnd(){
         return roundEnd;
     }
-    public Double getCurrentBet(){return currentBet;}
+    public Float getCurrentBet(){return currentBet;}
+//    public void moneyDB(List<Long> tmp) {
+//        this.playerMoney = tmp;
+//    }
+
 
     public void setStart(){
         if(playerMoney==0){
-            this.playerMoney = 100.00;
+            this.playerMoney = UserController.databaseBalance();
         }
-
 
         this.playerDeck.moveAllToDeckBJ(this.playingDeck);
         this.dealerDeck.moveAllToDeckBJ(this.playingDeck);
@@ -56,7 +66,7 @@ public class BlackJack {
     }
 
     public void setCurrentBet(String tmp){
-        this.currentBet = Double.parseDouble(tmp);
+        this.currentBet = Float.parseFloat(tmp);
     }
 
     public int getValuePlayer(){
@@ -70,7 +80,7 @@ public class BlackJack {
 
     public String getDealerOne(){
         this.dealerOne = dealerDeck.getCardBJ(0).toString();
-        return dealerOne;
+        return dealerOne + ".png";
     }
     public String ShowMoney(){
         DecimalFormat df2 = new DecimalFormat("#.##");

@@ -5,6 +5,7 @@ import io.javalin.http.ErrorHandler;
 import java.util.HashMap;
 import java.util.Map;
 
+import static app.Main.userDao;
 import static app.util.RequestUtil.*;
 
 public class ViewUtil {
@@ -13,6 +14,7 @@ public class ViewUtil {
         Map<String, Object> model = new HashMap<>();
         model.put("msg", new MessageBundle(getSessionLocale(ctx)));
         model.put("currentUser", getSessionCurrentUser(ctx));
+        model.put("user", userDao);
         return model;
     }
 

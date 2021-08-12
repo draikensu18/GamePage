@@ -10,21 +10,12 @@
     </form>
     #else
     <p1>Dealer deck: $blackjack.DealerOne</p1><br><br>
+    <img id="card" src="/card_images/$blackjack.DealerOne">
     <p2>Player deck: $blackjack.PlayerDeck</p2><br><br>
-    <p3>Your deck value: $blackjack.ValuePlayer</p3><br><br>
+    <p>Your deck value: $blackjack.ValuePlayer</p><br><br>
     <form method="post">
         <input type="submit" name="Hit" value="Hit">
         <input type="submit" name="Stand" value="Stand">
     </form>
     #end
-
-
-
-
-
-
-
-
-
-
 #end

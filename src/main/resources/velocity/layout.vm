@@ -18,11 +18,14 @@
                     <li>
                         <button name="locale" value="en" style="background-image: url(/img/english.png);"></button>
                     </li>
+                    <li>
+                        <p2 >Username: $currentUser</p2>
+                        <p2 >Balance: $user.balance </p2>
+                    </li>
                 </form>
             </ul>
             <ul id="menu">
                 <li><a href="/books">$msg.get("COMMON_NAV_ALLBOOKS")</a></li>
-                <li><a href="/register">$msg.get("COMMON_NAV_REGISTER")</a></li>
                 #if($currentUser)
                     <li>
                         <form method="post" action="/logout">
@@ -30,6 +33,7 @@
                         </form>
                     </li>
                 #else
+                    <li><a href="/register">$msg.get("COMMON_NAV_REGISTER")</a></li>
                     <li><a href="/login">$msg.get("COMMON_NAV_LOGIN")</a></li>
                 #end
             </ul>

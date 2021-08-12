@@ -11,3 +11,4 @@
 #* @vtlvariable name="authenticationFailed" type="java.lang.String" *#
 #* @vtlvariable name="authenticationSucceeded" type="java.lang.String" *#
 #* @vtlvariable name="loginRedirect" type="java.lang.String" *#
+#* @vtlvariable name="user" type="app.user.UserDao" *#

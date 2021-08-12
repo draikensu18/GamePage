@@ -1,5 +1,6 @@
 package app.login;
 
+import app.user.UserDao;
 import io.javalin.http.Handler;
 import java.util.Map;
 
@@ -7,6 +8,9 @@ import app.user.UserController;
 import app.util.Path;
 import app.util.ViewUtil;
 
+import static app.Main.user;
+import static app.Main.userDao;
+import static app.user.UserDao.users;
 import static app.util.RequestUtil.*;
 
 public class LoginController {
@@ -24,7 +28,9 @@ public class LoginController {
             model.put("authenticationFailed", true);
             ctx.render(Path.Template.LOGIN, model);
         } else {
+            UserDao.getAllUsers();
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
+            userDao.getBalance(userDao.getUserByUsername(getQueryUsername(ctx)));
             model.put("authenticationSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));
             if (getQueryLoginRedirect(ctx) != null) {

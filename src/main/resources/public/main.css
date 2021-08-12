@@ -48,6 +48,9 @@ a {
     text-decoration: none;
     color: #008ab4;
 }
+p2 {
+    color: #69a;
+}
 
 #menu li {
     float: left;
@@ -70,6 +73,10 @@ a {
 
 #logo {
     max-height: 50px;
+}
+
+#card {
+    max-width: 200px;
 }
 
 #chooseLanguage {

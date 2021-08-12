@@ -2,60 +2,74 @@ package app.game;
 
 import app.cards.Card;
 import app.cards.Deck;
-
-import java.util.NoSuchElementException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class HigherOrLower extends Deck {
+    public enum HigherOrLowerState {
+        Win,
+        Draw,
+        Lose
+    }
+    private static final Logger logger = LoggerFactory.getLogger(HigherOrLower.class);
+
     Deck game = new Deck();
+    Scanner scanner = new Scanner(System.in);
 
     public HigherOrLower() {
         game.getDeck();
         game.shuffle();
     }
 
-    public void higherOrLower() {
-        boolean end = false;
-        while (!end) {
+    public HigherOrLowerState gameLoop() {
         Card firstCard = game.pullCard();
         Card secondCard = game.pullCard();
-        Integer firstCardValue = firstCard.getValue();
-        Integer secondCardValue = secondCard.getValue();
-        Integer nextCard = 0;
-        System.out.println(firstCard.toString() + firstCardValue);
-        System.out.println(secondCard.toString() + secondCardValue);
-        String cmd = "";
-        try {
-            Scanner sc = new Scanner(System.in);
-            if (firstCardValue > secondCardValue) {
-                System.out.println("you win");
-                System.out.println("pick another card? yes/no");
-                cmd = sc.nextLine().toLowerCase();
-                if (cmd.equals("no")) {
-                    end = true;
-                } else {
-                    higherOrLower();
-                }
-            } else if (firstCardValue.equals(secondCardValue)) {
-                System.out.println("equal cards");
-                end = true;
-            } else {
-                System.out.println("you lose, better luck next time");
-                end = true;
-            }
+        int firstCardValue = firstCard.getValue();
+        int secondCardValue = secondCard.getValue();
 
-            sc.close();
+        logger.warn(Integer.toString(firstCardValue), firstCard);
+        logger.warn(Integer.toString(secondCardValue), secondCard);
 
-        }catch (NoSuchElementException e) {
-            end = true;
+        if (firstCardValue > secondCardValue) {
+            return HigherOrLowerState.Win;
+        } else if (firstCardValue == secondCardValue) {
+            return HigherOrLowerState.Draw;
+        } else {
+            return HigherOrLowerState.Lose;
         }
+    }
 
+    public boolean continueGame() {
+        System.out.print("Continue? (y/n): ");
+        String s = scanner.nextLine();
+        if ("y".equals(s.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else if ("n".equals(s.toLowerCase(Locale.ROOT))) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public void higherOrLower() {
+        HigherOrLowerState state = gameLoop();
+        if (state == HigherOrLowerState.Win) {
+            System.out.println("WIN");
+            if (continueGame()) {
+                higherOrLower();
+            }
+        } else if (state == HigherOrLowerState.Draw) {
+            System.out.println("DRAW");
+        } else if (state == HigherOrLowerState.Lose) {
+            System.out.println("LOSE");
         }
     }
 
     public static void main(String[] args) {
         HigherOrLower game = new HigherOrLower();
         game.higherOrLower();
-      }
+    }
 
 }

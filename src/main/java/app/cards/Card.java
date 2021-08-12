@@ -24,9 +24,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "face=" + face +
-                ", suit=" + suit +
-                '}';
+        return  face + "_" + suit;
     }
 }

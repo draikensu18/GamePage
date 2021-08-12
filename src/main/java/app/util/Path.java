@@ -17,13 +17,13 @@ public class Path {
     public static class Template {
         public static final String INDEX = "/velocity/index/index.vm";
         public static final String LOGIN = "/velocity/login/login.vm";
-        public static final String BOOKS_ALL = "/velocity/book/all.vm";
-        public static final String BOOKS_ONE = "/velocity/book/one.vm";
+        public static final String BOOKS_ALL = "/velocity/game/all.vm";
+        public static final String BOOKS_ONE = "/velocity/game/one.vm";
         public static final String NOT_FOUND = "/velocity/notFound.vm";
         public static final String REGISTER = "/velocity/register/register.vm";
-        public static final String BLACKJACKTEMPLATE = "/velocity/book/BlackJack.vm";
-        public static final String BLACKJACKGAMETEMPLATE = "/velocity/book/BlackJackGame.vm";
-        public static final String SLOTSTEMPLATE = "/velocity/book/slots.vm";
+        public static final String BLACKJACKTEMPLATE = "/velocity/game/BlackJack.vm";
+        public static final String BLACKJACKGAMETEMPLATE = "/velocity/game/BlackJackGame.vm";
+        public static final String SLOTSTEMPLATE = "/velocity/game/slots.vm";
     }
 
 }

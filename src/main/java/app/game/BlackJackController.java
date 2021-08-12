@@ -7,6 +7,7 @@ import io.javalin.http.Handler;
 import java.util.Map;
 
 import static app.Main.blackJack;
+import static app.Main.userDao;
 import static app.util.RequestUtil.*;
 
 public class BlackJackController {

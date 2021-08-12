@@ -38,7 +38,6 @@ public class Deck {
                 "deckOfCards=" + deckOfCards +
                 '}';
     }
-
     public void addBJ(Card pullCard) {
         this.deckOfCards.add(pullCard);
     }
@@ -101,7 +100,4 @@ public class Deck {
 
         return totalValue;
     }
-
-
-
 }
