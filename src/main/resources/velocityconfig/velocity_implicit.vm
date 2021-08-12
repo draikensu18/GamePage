@@ -4,6 +4,7 @@
 #* @vtlvariable name="games" type="java.lang.Iterable<app.game.Game>" *#
 #* @vtlvariable name="game" type="app.game.Game" *#
 #* @vtlvariable name="blackjack" type="app.game.BlackJack" *#
+#* @vtlvariable name="slots" type="app.game.Slots" *#
 #* @vtlvariable name="users" type="java.lang.Iterable<app.user.User>" *#
 #* @vtlvariable name="currentUser" type="java.lang.String" *#
 #* @vtlvariable name="loggedOut" type="java.lang.String" *#

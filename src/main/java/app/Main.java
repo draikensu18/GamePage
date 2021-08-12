@@ -1,9 +1,6 @@
 package app;
 
-import app.game.BlackJack;
-import app.game.BlackJackController;
-import app.game.GameController;
-import app.game.GameDao;
+import app.game.*;
 import app.index.IndexController;
 import app.login.LoginController;
 import app.user.UserDao;
@@ -24,6 +21,7 @@ public class Main {
     public static GameDao gameDao;
     public static BlackJack blackJack;
     public static UserDao userDao;
+    public static Slots slots;
 
     public static void main(String[] args) {
     //test
@@ -31,6 +29,7 @@ public class Main {
         gameDao = new GameDao();
         userDao = new UserDao();
         blackJack = new BlackJack();
+        slots = new Slots();
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
@@ -42,6 +41,8 @@ public class Main {
             before(LoginController.ensureLoginBeforeViewingBooks);
             get(Path.Web.INDEX, IndexController.serveIndexPage);
             get(Path.Web.BOOKS, GameController.fetchAllBooks);
+            get(Path.Web.SLOTS, SlotController.fetchSlots);
+            post(Path.Web.SLOTS, SlotController.fetchSlotsBet);
             get(Path.Web.BLACKJACK, BlackJackController.fetchBlackJack);
             post(Path.Web.BLACKJACK, BlackJackController.fetchCurrentBet);
             get(Path.Web.BLACKJACKGAME, BlackJackController.fetchBlackJackGame);

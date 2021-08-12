@@ -12,7 +12,7 @@ public class RequestUtil {
     public static String getParamIsbn(Context ctx) {
         return ctx.pathParam("isbn");
     }
-
+    public static String getParamReSpin(Context ctx) {return ctx.formParam("ReSpin");}
     public static String getQueryUsername(Context ctx) {
         return ctx.formParam("username");
     }

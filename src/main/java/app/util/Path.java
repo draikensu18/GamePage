@@ -11,6 +11,7 @@ public class Path {
         public static final String REGISTER = "/register";
         public static final String BLACKJACK = "/blackjack";
         public static final String BLACKJACKGAME = "/blackjack/game";
+        public static final String SLOTS = "/slots";
     }
 
     public static class Template {
@@ -22,6 +23,7 @@ public class Path {
         public static final String REGISTER = "/velocity/register/register.vm";
         public static final String BLACKJACKTEMPLATE = "/velocity/book/BlackJack.vm";
         public static final String BLACKJACKGAMETEMPLATE = "/velocity/book/BlackJackGame.vm";
+        public static final String SLOTSTEMPLATE = "/velocity/book/slots.vm";
     }
 
 }

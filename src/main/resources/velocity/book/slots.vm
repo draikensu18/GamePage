@@ -1,0 +1,21 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>Slots</h1><br/>
+<p1>Balance: $slots.ShowMoney()</p1>
+<form action=""method="post" >
+    <label>Bet Amount:</label>
+    <input type="text" name="currentBet" placeholder="Bet" value="" required><br>
+    <input type="submit" value="Confirm">
+</form>
+    #if($slots.UI)
+    <p1>$slots.slot1  ||  $slots.slot2  ||  $slots.slot3</p1></br>
+        #if($slots.win>0)
+        <p1>You win: $slots.win</p1>
+            #elseif($slots.win<0)
+            <p1>You lose: $slots.win</p1></br>
+        #end
+    <form action=""method="post" >
+        <input type="submit" value="Spin" name="ReSpin" placeholder="Respin">
+    </form>
+    #end
+#end
