@@ -1,3 +1,12 @@
-# javalin-website-example
+# Game page by Team 3
 
-## source code for tutorial at [https://javalin.io/tutorials/website-example](https://javalin.io/tutorials/website-example)
+## Page contains 5 games:
+ - Black Jack
+ - Higher or Lower
+ - Slots
+ - Baccarat
+ - Tic Tac Toe
+
+### All games use credit balance system
+
+### Based on Javalin framework
