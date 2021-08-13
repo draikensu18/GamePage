@@ -25,6 +25,7 @@ public class Main {
     public static UserDao userDao;
     public static User user;
     public static Slots slots;
+    public static HigherOrLower higherOrLower;
 
     public static void main(String[] args) {
     //test
@@ -34,6 +35,7 @@ public class Main {
         blackJack = new BlackJack();
         slots = new Slots();
         user = UserDao.getUserById(1);
+        higherOrLower= new HigherOrLower();
 
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public");
@@ -44,7 +46,7 @@ public class Main {
             before(Filters.handleLocaleChange);
             before(LoginController.ensureLoginBeforeViewingBooks);
             get(Path.Web.INDEX, IndexController.serveIndexPage);
-            get(Path.Web.BOOKS, GameController.fetchAllBooks);
+            get(Path.Web.GAMES, GameController.fetchAllGames);
             get(Path.Web.SLOTS, SlotController.fetchSlots);
             post(Path.Web.SLOTS, SlotController.fetchSlotsBet);
             get(Path.Web.BLACKJACK, BlackJackController.fetchBlackJack);
@@ -57,6 +59,8 @@ public class Main {
             get(Path.Web.LOGIN, LoginController.serveLoginPage);
             post(Path.Web.LOGIN, LoginController.handleLoginPost);
             post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
+            get(Path.Web.HIGHERORLOWER, HigherOrLowerController.fetchHigherOrLower);
+            post(Path.Web.HIGHERORLOWER, HigherOrLowerController.fetchHigherOrLowerBet);
         });
 
         app.error(404, ViewUtil.notFound);

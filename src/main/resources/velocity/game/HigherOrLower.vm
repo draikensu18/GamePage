@@ -1,0 +1,31 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>HigherOrLower</h1><br/>
+<p1>Balance: $higherOrLower.ShowMoney()</p1>
+<form action=""method="post" >
+    <label>Bet Amount:</label>
+    <input type="text" name="currentBet" placeholder="Bet" value="" required><br>
+    <input type="submit" value="Confirm">
+</form>
+    #if($higherOrLower.UI)
+    <img id="card" src="/card_images/$higherOrLower.SecondCard">
+    <p>Dealer deck: $higherOrLower.SecondCardValue()</p><br><br>
+    <img id="card" src="/card_images/$higherOrLower.FirstCard">
+    <p>Your deck value: $higherOrLower.FirstCardValue()</p><br><br>
+        #if($higherOrLower.values)
+            #if($higherOrLower.win)
+            <p1>You win</p1>
+            #end
+            #if($higherOrLower.lose)
+            <p1>You lose</p1>
+            #end
+            #if($higherOrLower.draw)
+            <p1>Draw</p1>
+            #end
+        #end
+    <form action=""method="post" >
+        <input type="submit" value="Play" name="Play" placeholder="Play">
+    </form>
+    #end
+
+#end

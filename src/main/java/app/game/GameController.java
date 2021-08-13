@@ -11,15 +11,15 @@ import static app.util.RequestUtil.*;
 
 public class GameController {
 
-    public static Handler fetchAllBooks = ctx -> {
+    public static Handler fetchAllGames = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        model.put("books", gameDao.getAllBooks());
-        ctx.render(Path.Template.BOOKS_ALL, model);
+        model.put("games", gameDao.getAllGames());
+        ctx.render(Path.Template.GAMES_ALL, model);
     };
 
     public static Handler fetchOneBook = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        model.put("book", gameDao.getBookByIsbn(getParamIsbn(ctx)));
-        ctx.render(Path.Template.BOOKS_ONE, model);
+        model.put("game", gameDao.getBookByIsbn(getParamIsbn(ctx)));
+        ctx.render(Path.Template.GAMES_ONE, model);
     };
 }

@@ -25,7 +25,7 @@
                 </form>
             </ul>
             <ul id="menu">
-                <li><a href="/books">$msg.get("COMMON_NAV_ALLBOOKS")</a></li>
+                <li><a href="/games">$msg.get("COMMON_NAV_ALLGAMES")</a></li>
                 #if($currentUser)
                     <li>
                         <form method="post" action="/logout">

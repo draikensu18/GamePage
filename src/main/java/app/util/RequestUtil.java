@@ -15,6 +15,7 @@ public class RequestUtil {
     public static String getQueryUsername(Context ctx) {
         return ctx.formParam("username");
     }
+    public static String getParamPlay(Context ctx) {return ctx.formParam("Play");}
 
     public static String getUserBalance(Context ctx) {
         return ctx.formParam("balance");

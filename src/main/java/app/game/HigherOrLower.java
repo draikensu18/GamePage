@@ -2,74 +2,148 @@ package app.game;
 
 import app.cards.Card;
 import app.cards.Deck;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import java.util.Locale;
+
+import java.text.DecimalFormat;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class HigherOrLower extends Deck {
-    public enum HigherOrLowerState {
-        Win,
-        Draw,
-        Lose
+    public double playerMoney;
+    public boolean UI;
+    public double currentBet;
+    public Deck game = new Deck();
+    public Card firstCard;
+    public Card secondCard;
+    public Integer firstCardValue;
+    public Integer secondCardValue;
+    public boolean values ;
+    public boolean win ;
+    public boolean lose ;
+    public boolean draw ;
+
+
+    public boolean getValues() {
+        return values;
     }
-    private static final Logger logger = LoggerFactory.getLogger(HigherOrLower.class);
-
-    Deck game = new Deck();
-    Scanner scanner = new Scanner(System.in);
-
-    public HigherOrLower() {
+    public boolean getWin() {
+        return win;
+    }
+    public boolean getLose() {
+        return lose;
+    }
+    public boolean getDraw() {
+        return draw;
+    }
+    public void HigherOrLowerStartPosition() {
+        if (playerMoney == 0) {
+            UI=false;
+            values=false;
+            this.playerMoney = 100.00;
+        }
+    }
+    public double getPlayerMoney() {
+        return playerMoney;
+    }
+    public String ShowMoney() {
+        DecimalFormat df2 = new DecimalFormat("#.##");
+        return df2.format(this.playerMoney);
+    }
+    public boolean getUI() {
+        return UI;
+    }
+    public void ExtraUI1(){
+        UI = true;
+    }
+    public void ExtraUI2(){
+        UI = false;
+    }
+    public void setCurrentBet(String tmp) {
+        this.currentBet = Double.parseDouble(tmp);
+    }
+    public Double getCurrentBet() {
+        return currentBet;
+    }
+    public void Start() {
+        win = false ;
+        lose= false ;
+        draw = false ;
+        values = true;
         game.getDeck();
         game.shuffle();
+        boolean end = false;
+
+        firstCard = game.pullCard();
+        secondCard = game.pullCard();
+        firstCardValue = firstCard.getValue();
+        secondCardValue = secondCard.getValue();
+        Integer nextCard = 0;
+
+
     }
 
-    public HigherOrLowerState gameLoop() {
-        Card firstCard = game.pullCard();
-        Card secondCard = game.pullCard();
-        int firstCardValue = firstCard.getValue();
-        int secondCardValue = secondCard.getValue();
+    public String getFirstCard(){
+        if(values){
+            return firstCard.toString() + ".png";
+        }else{
+            return"";
+        }
 
-        logger.warn(Integer.toString(firstCardValue), firstCard);
-        logger.warn(Integer.toString(secondCardValue), secondCard);
+    }
 
+    public String FirstCard(){
+        if(values){
+            return firstCard.toString() + ".png";
+        }else{
+            return"";
+        }
+
+    }
+
+    public Integer FirstCardValue() {
+        if(values){
+            return firstCardValue;
+        }else{
+            return 0;
+        }
+
+    }
+    public String getSecondCard(){
+        if(values){
+            return secondCard.toString() + ".png";
+        }else{
+            return"";
+        }
+
+
+    }
+
+    public Integer SecondCardValue() {
+        if(values){
+            return secondCardValue;
+        }else{
+            return 0;
+        }
+
+    }
+
+    public void CheckLose() {
+        if (firstCardValue < secondCardValue) {
+            this.playerMoney -= currentBet;
+            lose = true ;
+        }
+    }
+    public void CheckWin() {
         if (firstCardValue > secondCardValue) {
-            return HigherOrLowerState.Win;
-        } else if (firstCardValue == secondCardValue) {
-            return HigherOrLowerState.Draw;
-        } else {
-            return HigherOrLowerState.Lose;
+            this.playerMoney += currentBet;
+            win = true ;
+        }
+    }
+    public void CheckDraw() {
+        if (firstCardValue == secondCardValue) {
+            draw = true ;
         }
     }
 
-    public boolean continueGame() {
-        System.out.print("Continue? (y/n): ");
-        String s = scanner.nextLine();
-        if ("y".equals(s.toLowerCase(Locale.ROOT))) {
-            return true;
-        } else if ("n".equals(s.toLowerCase(Locale.ROOT))) {
-            return false;
-        } else {
-            return false;
-        }
-    }
 
-    public void higherOrLower() {
-        HigherOrLowerState state = gameLoop();
-        if (state == HigherOrLowerState.Win) {
-            System.out.println("WIN");
-            if (continueGame()) {
-                higherOrLower();
-            }
-        } else if (state == HigherOrLowerState.Draw) {
-            System.out.println("DRAW");
-        } else if (state == HigherOrLowerState.Lose) {
-            System.out.println("LOSE");
-        }
-    }
-
-    public static void main(String[] args) {
-        HigherOrLower game = new HigherOrLower();
-        game.higherOrLower();
-    }
 
 }

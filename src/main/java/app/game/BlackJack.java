@@ -1,18 +1,11 @@
 package app.game;
 
 import app.cards.Deck;
-import app.user.User;
 import app.user.UserController;
-import app.user.UserDao;
-import app.util.RequestUtil;
-import org.jooq.TableField;
-import org.jooq.generated.tables.records.UsersRecord;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
-
-public class BlackJack {
+public class BlackJack extends Deck{
     public double playerMoney;
     public Deck playingDeck;
     public Deck playerDeck = new Deck();
@@ -20,32 +13,44 @@ public class BlackJack {
     public boolean roundEnd;
     public int valuePlayer;
     public int valueDealer;
-    public String dealerOne;
-
+    public Deck dealerOne;
     public Float currentBet;
 
+    public int getDealerFirst() {
+        return dealerDeck.getCardBJ(0).getValue();
 
-    public double getPlayerMoney(){return playerMoney;}
-    public Deck getPlayingDeck(){
+    }
+
+    public String getDealerOne() {
+        return dealerDeck.getCardBJ(0).toString() + ".png";
+    }
+
+    public double getPlayerMoney() {
+        return playerMoney;
+    }
+
+    public Deck getPlayingDeck() {
         return playingDeck;
     }
-    public Deck getPlayerDeck(){
+
+    public Deck getPlayerDeck() {
         return playerDeck;
     }
-    public Deck getDealerDeck(){
+
+    public Deck getDealerDeck() {
         return dealerDeck;
     }
-    public boolean getRoundEnd(){
+
+    public boolean getRoundEnd() {
         return roundEnd;
     }
-    public Float getCurrentBet(){return currentBet;}
-//    public void moneyDB(List<Long> tmp) {
-//        this.playerMoney = tmp;
-//    }
 
+    public Float getCurrentBet() {
+        return currentBet;
+    }
 
-    public void setStart(){
-        if(playerMoney==0){
+    public void setStart() {
+        if (playerMoney == 0) {
             this.playerMoney = UserController.databaseBalance();
         }
 
@@ -62,47 +67,48 @@ public class BlackJack {
         this.dealerDeck.addBJ(this.playingDeck.pullCard());
         this.dealerDeck.addBJ(this.playingDeck.pullCard());
 
-        this.roundEnd=false;
+        this.roundEnd = false;
     }
 
-    public void setCurrentBet(String tmp){
+    public void setCurrentBet(String tmp) {
         this.currentBet = Float.parseFloat(tmp);
     }
 
-    public int getValuePlayer(){
+    public int getValuePlayer() {
         this.valuePlayer = this.playerDeck.cardsValueBJ();
         return valuePlayer;
     }
-    public int getValueDealer(){
+
+    public int getValueDealer() {
         this.valueDealer = this.dealerDeck.cardsValueBJ();
         return valueDealer;
     }
 
-    public String getDealerOne(){
-        this.dealerOne = dealerDeck.getCardBJ(0).toString();
-        return dealerOne + ".png";
-    }
-    public String ShowMoney(){
+
+    public String ShowMoney() {
         DecimalFormat df2 = new DecimalFormat("#.##");
         return df2.format(this.playerMoney);
     }
 
-    public void getCard(){
+    public void getCard() {
         this.playerDeck.addBJ(this.playingDeck.pullCard());
     }
-    public void getCardDealer(){
+
+    public void getCardDealer() {
         this.dealerDeck.addBJ(this.playingDeck.pullCard());
     }
-    public void getLose(){
-        this.playerMoney-=this.currentBet;
-    }
-    public void getWin(){
-        this.playerMoney+=this.currentBet;
-    }
-    public void setRoundEnd(){
-        this.roundEnd=true;
+
+    public void getLose() {
+        this.playerMoney -= this.currentBet;
     }
 
+    public void getWin() {
+        this.playerMoney += this.currentBet;
+    }
+
+    public void setRoundEnd() {
+        this.roundEnd = true;
+    }
 
 
 }

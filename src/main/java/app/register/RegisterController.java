@@ -36,7 +36,7 @@ public class RegisterController {
     };
 
     public static boolean registerUser(String userName, String password) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project/db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root")) {
             DSLContext context = DSL.using(connection, SQLDialect.MYSQL);
             context.insertInto(USERS, USERS.USERNAME, USERS.PASSWORD).values(userName, password).execute();
             return true;

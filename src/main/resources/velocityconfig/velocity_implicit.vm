@@ -12,3 +12,4 @@
 #* @vtlvariable name="authenticationSucceeded" type="java.lang.String" *#
 #* @vtlvariable name="loginRedirect" type="java.lang.String" *#
 #* @vtlvariable name="user" type="app.user.UserDao" *#
+#* @vtlvariable name="higherOrLower" type="app.game.HigherOrLower" *#

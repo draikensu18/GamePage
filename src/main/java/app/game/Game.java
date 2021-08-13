@@ -7,11 +7,11 @@ public class Game {
     public final String author;
 
     public String getMediumCover() {
-        return "http://covers.openlibrary.org/b/isbn/" + this.isbn + "-M.jpg";
+        return this.isbn + ".png";
     }
 
     public String getLargeCover() {
-        return "http://covers.openlibrary.org/b/isbn/" + this.isbn + "-L.jpg";
+        return this.isbn + ".png";
     }
 
     public Game(String title, String author, String isbn) {

@@ -49,6 +49,10 @@ public class Deck {
         return this.deckOfCards.size();
     }
 
+    public ArrayList<Card> getDeckOfCards() {
+        return deckOfCards;
+    }
+
     public void moveAllToDeckBJ(Deck moveTo){
         int thisDeckSize = this.deckOfCards.size();
 

@@ -10,14 +10,14 @@ public class GameDao {
 
     {
         games = new ArrayList<>();
-        games.add(new Game("BlackJack", "u18", "9789583001215"));
-        games.add(new Game("Higher Or Lower", "u12", "9780141324524"));
-        games.add(new Game("Slots", "u15", "9781936594290"));
-        games.add(new Game("Tic Tac Toe", "u16", "9781936594290"));
-        games.add(new Game("Jumping Cards", "u21", "9781936594290"));
+        games.add(new Game("BlackJack", "u18", "blackjack"));
+        games.add(new Game("Higher Or Lower", "u12", "higherorlower"));
+        games.add(new Game("Slots", "u15", "slots"));
+        games.add(new Game("Tic Tac Toe", "u16", "tictactoe"));
+        games.add(new Game("Baccarat", "u21", "baccarat"));
     }
 
-    public Iterable<Game> getAllBooks() {
+    public Iterable<Game> getAllGames() {
         return games;
     }
 

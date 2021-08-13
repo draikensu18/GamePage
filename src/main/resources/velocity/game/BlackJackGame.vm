@@ -1,17 +1,23 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($blackjack.RoundEnd)
-    <p1>Dealer deck: $blackjack.DealerDeck</p1><br><br>
-    <p3>Dealer deck value: $blackjack.ValueDealer</p3><br><br>
-    <p3>Player deck: $blackjack.PlayerDeck</p3><br><br>
-    <p4>Your deck value: $blackjack.ValuePlayer</p4><br><br>
+        #foreach ($card in $blackjack.dealerDeck.deckOfCards)
+        <p><img id="card" src="/card_images/${card}.png"></p>
+        #end
+    <p>Dealer deck value: $blackjack.valueDealer</p><br><br>
+        #foreach ($card in $blackjack.PlayerDeck.deckOfCards)
+        <p><img id="card" src="/card_images/${card}.png"></p>
+        #end
+    <p>Your deck value: $blackjack.ValuePlayer</p><br><br>
     <form method="post">
         <input type="submit" name="Reset" value="Reset">
     </form>
     #else
-    <p1>Dealer deck: $blackjack.DealerOne</p1><br><br>
     <img id="card" src="/card_images/$blackjack.DealerOne">
-    <p2>Player deck: $blackjack.PlayerDeck</p2><br><br>
+    <p>Dealer deck value: $blackjack.dealerFirst</p><br><br>
+        #foreach ($card in $blackjack.PlayerDeck.deckOfCards)
+        <p><img id="card" src="/card_images/${card}.png"></p>
+        #end
     <p>Your deck value: $blackjack.ValuePlayer</p><br><br>
     <form method="post">
         <input type="submit" name="Hit" value="Hit">
