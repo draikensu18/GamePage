@@ -4,13 +4,13 @@ public class User {
     public final String username;
     public final String password;
     public final float balance;
-    public final int id;
+    public static int id;
 
     public User(String username, String password, float balance, int id) {
         this.username = username;
         this.password = password;
         this.balance = balance;
-        this.id = id;
+        User.id = id;
     }
 
     public String getUsername() {

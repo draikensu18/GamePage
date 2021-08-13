@@ -3,11 +3,8 @@ package app.game;
 import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.http.Handler;
-
 import java.util.Map;
-
 import static app.Main.higherOrLower;
-import static app.Main.slots;
 import static app.util.RequestUtil.*;
 
 public class HigherOrLowerController {

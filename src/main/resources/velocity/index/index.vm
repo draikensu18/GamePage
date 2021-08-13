@@ -11,11 +11,7 @@
     #if($game)
     <h2>$msg.get("INDEX_BOOK_OF_THE_DAY_TEXT")</h2>
     <div class="row row-2">
-        <div class="col">
-            <a href="/books/$game.isbn">$msg.get("INDEX_BOOK_OF_THE_DAY_LINK", $game.title, $game.author)</a>
-        </div>
-        <div class="col">
-            <img src="$game.largeCover" alt="$game.title">
+
         </div>
     </div>
     #end

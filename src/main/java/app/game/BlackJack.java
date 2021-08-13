@@ -2,6 +2,7 @@ package app.game;
 
 import app.cards.Deck;
 import app.user.UserController;
+import app.user.UserDao;
 
 import java.text.DecimalFormat;
 
@@ -100,10 +101,12 @@ public class BlackJack extends Deck{
 
     public void getLose() {
         this.playerMoney -= this.currentBet;
+        UserDao.updateBalance((int) playerMoney);
     }
 
     public void getWin() {
         this.playerMoney += this.currentBet;
+        UserDao.updateBalance((int) playerMoney);
     }
 
     public void setRoundEnd() {

@@ -3,14 +3,10 @@ package app.login;
 import app.user.UserDao;
 import io.javalin.http.Handler;
 import java.util.Map;
-
 import app.user.UserController;
 import app.util.Path;
 import app.util.ViewUtil;
-
-import static app.Main.user;
 import static app.Main.userDao;
-import static app.user.UserDao.users;
 import static app.util.RequestUtil.*;
 
 public class LoginController {
@@ -36,7 +32,7 @@ public class LoginController {
             if (getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(getQueryLoginRedirect(ctx));
             }
-            ctx.render(Path.Template.INDEX, model);
+            ctx.render(Path.Template.LOGIN, model);
         }
     };
 
@@ -49,7 +45,7 @@ public class LoginController {
     // The origin of the request (request.pathInfo()) is saved in the session so
     // the user can be redirected back after login
     public static Handler ensureLoginBeforeViewingBooks = ctx -> {
-        if (!ctx.path().startsWith("/books")) {
+        if (!ctx.path().startsWith("/games")) {
             return;
         }
         if (ctx.sessionAttribute("currentUser") == null) {

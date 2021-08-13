@@ -1,27 +1,15 @@
 package app.register;
 
-import app.user.UserController;
-import app.util.Database;
 import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.http.Handler;
-import org.jetbrains.annotations.NotNull;
 import org.jooq.*;
-import org.jooq.Record;
 import org.jooq.exception.DataAccessException;
-import org.jooq.generated.tables.records.UsersRecord;
 import org.jooq.impl.DSL;
-import org.jooq.types.UInteger;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-
-import static app.Main.blackJack;
-import static app.Main.user;
 import static app.util.RequestUtil.*;
 import static app.util.RequestUtil.getQueryLoginRedirect;
 import static org.jooq.generated.tables.Users.USERS;

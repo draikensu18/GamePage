@@ -2,10 +2,9 @@ package app.game;
 
 import app.cards.Card;
 import app.cards.Deck;
+import app.user.UserDao;
 
 import java.text.DecimalFormat;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class HigherOrLower extends Deck {
     public double playerMoney;
@@ -16,57 +15,68 @@ public class HigherOrLower extends Deck {
     public Card secondCard;
     public Integer firstCardValue;
     public Integer secondCardValue;
-    public boolean values ;
-    public boolean win ;
-    public boolean lose ;
-    public boolean draw ;
-
+    public boolean values;
+    public boolean win;
+    public boolean lose;
+    public boolean draw;
 
     public boolean getValues() {
         return values;
     }
+
     public boolean getWin() {
         return win;
     }
+
     public boolean getLose() {
         return lose;
     }
+
     public boolean getDraw() {
         return draw;
     }
+
     public void HigherOrLowerStartPosition() {
         if (playerMoney == 0) {
-            UI=false;
-            values=false;
-            this.playerMoney = 100.00;
+            UI = false;
+            values = false;
+            this.playerMoney = UserDao.getBalance();
         }
     }
+
     public double getPlayerMoney() {
         return playerMoney;
     }
+
     public String ShowMoney() {
         DecimalFormat df2 = new DecimalFormat("#.##");
         return df2.format(this.playerMoney);
     }
+
     public boolean getUI() {
         return UI;
     }
-    public void ExtraUI1(){
+
+    public void ExtraUI1() {
         UI = true;
     }
-    public void ExtraUI2(){
+
+    public void ExtraUI2() {
         UI = false;
     }
+
     public void setCurrentBet(String tmp) {
         this.currentBet = Double.parseDouble(tmp);
     }
+
     public Double getCurrentBet() {
         return currentBet;
     }
+
     public void Start() {
-        win = false ;
-        lose= false ;
-        draw = false ;
+        win = false;
+        lose = false;
+        draw = false;
         values = true;
         game.getDeck();
         game.shuffle();
@@ -78,49 +88,49 @@ public class HigherOrLower extends Deck {
         secondCardValue = secondCard.getValue();
         Integer nextCard = 0;
 
-
     }
 
-    public String getFirstCard(){
-        if(values){
+    public String getFirstCard() {
+        if (values) {
             return firstCard.toString() + ".png";
-        }else{
-            return"";
+        } else {
+            return "";
         }
 
     }
 
-    public String FirstCard(){
-        if(values){
+    public String FirstCard() {
+        if (values) {
             return firstCard.toString() + ".png";
-        }else{
-            return"";
+        } else {
+            return "";
         }
 
     }
 
     public Integer FirstCardValue() {
-        if(values){
+        if (values) {
             return firstCardValue;
-        }else{
+        } else {
             return 0;
         }
 
     }
-    public String getSecondCard(){
-        if(values){
+
+    public String getSecondCard() {
+        if (values) {
             return secondCard.toString() + ".png";
-        }else{
-            return"";
+        } else {
+            return "";
         }
 
 
     }
 
     public Integer SecondCardValue() {
-        if(values){
+        if (values) {
             return secondCardValue;
-        }else{
+        } else {
             return 0;
         }
 
@@ -129,21 +139,23 @@ public class HigherOrLower extends Deck {
     public void CheckLose() {
         if (firstCardValue < secondCardValue) {
             this.playerMoney -= currentBet;
-            lose = true ;
+            UserDao.updateBalance((int) playerMoney);
+            lose = true;
         }
     }
+
     public void CheckWin() {
         if (firstCardValue > secondCardValue) {
             this.playerMoney += currentBet;
-            win = true ;
+            UserDao.updateBalance((int) playerMoney);
+            win = true;
         }
     }
+
     public void CheckDraw() {
         if (firstCardValue == secondCardValue) {
-            draw = true ;
+            draw = true;
         }
     }
-
-
 
 }

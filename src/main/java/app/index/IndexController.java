@@ -2,10 +2,8 @@ package app.index;
 
 import io.javalin.http.Handler;
 import java.util.Map;
-
 import app.util.Path;
 import app.util.ViewUtil;
-
 import static app.Main.*;
 
 public class IndexController {

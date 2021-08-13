@@ -11,14 +11,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.jooq.Record;
-
-
+import static org.jooq.impl.DSL.*;
 import static org.jooq.generated.tables.Users.USERS;
-
 
 public class UserDao {
 
-    public float balance;
+    private static float balance;
+   // public float balance;
     public static final ArrayList<User> users = getAllUsers();
 
     public static ArrayList<User> getAllUsers() {
@@ -64,9 +63,22 @@ public class UserDao {
         balance = user.balance;
     }
 
-    public float getBalance(){
-        return balance;
+    public static float getBalance(){
+       return balance;
     }
 
+    public static void updateBalance(Integer balance){
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root")) {
+            DSLContext context = DSL.using(connection, SQLDialect.MYSQL);
+            context.update(USERS)
+                    .set(USERS.BALANCE, balance.longValue())
+                    .where(USERS.USERNAME.eq(currentUser()))
+                    .execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
 
 }
